@@ -1,0 +1,27 @@
+﻿
+.button-add {
+    border-radius: 25px;
+    float: right;
+}
+div h2 {
+    display: inline;
+}
+.title-agenda {
+    text-align:center; 
+    margin-bottom: 2%; 
+    margin-top: 4%;
+}
+
+.subtitle-agenda {
+    text-align: left;
+    margin-bottom: 2%;
+    margin-top: 10%;
+}
+
+.operacao-buttons {
+    margin-top: 10%;
+}
+
+.inline {
+    display: inline-block;
+}

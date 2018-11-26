@@ -1,0 +1,129 @@
+﻿@model  Agenda.DTOs.AtividadeDTO
+@{
+    ViewBag.Title = "Index";
+}
+<div class="title-agenda">
+    <h2>Gerenciador De Atividades</h2>
+</div>
+<div class="subtitle-agenda">
+    <h3>Cadastro De Atividade</h3>
+</div>
+<form action="GerenciadorAtividade/Cadastro" method="post">
+    <div class="form-group font-weight-bold">
+        <label for="exampleInputEmail1">Título</label>
+        <input value="@Model.Titulo" id="titulo" name="titulo" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Título do evento">
+    </div>
+    <div class="form-group font-weight-bold">
+        <label for="exampleInputPassword1">Descrição</label>
+        <textarea value="@Model.Descricao" id="descricao" name="descricao" type="text" class="form-control" placeholder="Descrição do evento"></textarea>
+    </div>
+    <div class="form-row">
+        <div class="form-group col font-weight-bold">
+            <label for="exampleInputPassword1">Data</label>
+            <input value="@Model.DataHora" id="data" name="data" type="date" class="form-control" placeholder="Data em que ocorrerá o evento">
+        </div>
+        <div class="form-group col font-weight-bold">
+            <label for="exampleInputPassword1">Hora</label>
+            <input value="@Model.DataHora" id="hora" name="hora" type="time" class="form-control" placeholder="Hora em que ocorrerá o evento">
+        </div>
+    </div>
+
+    <hr />
+    <h3>Participantes</h3>
+    <table class="table table-striped" style="width: 100%">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
+                foreach (var pess in Model.pessoas)
+                {
+                    if (pess.Checked)
+                    {
+                        <tr>
+                            <td name="myTd"></td>
+                            <td>@pess.Nome</td>
+                            <td>@pess.Email</td>
+                            <td>
+                                <a class="btn btn-danger float-right" style="margin: 1%; color: white">Remover</a>
+                            </td>
+                        </tr>
+                    }
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-success operacao-buttons" data-toggle="modal" data-target="#myModal">Adicionar Participante</button>
+    <button type="submit" class="btn btn-primary operacao-buttons">Enviar</button>
+</form>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Contatos</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th> 
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.pessoas)
+                        {
+                        <tr>
+                            <td>@item.Nome</td>
+                            <td>@item.Email</td>
+                            <td>
+                                <div class="form-check">
+                                    <input checked="@item.Checked" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+<script>
+    setInterval(update, 1000);
+    function update() {
+        numerarTebela('myTd', 'td');
+        console.log("Update");
+    }
+
+    function remove(index) {
+        console.log(index);
+    }
+
+    function getArray() {
+        let myArray = [];
+        @foreach (var d in Model.pessoas)
+        {
+            @:myArray.push('{"Nome": "@d.Nome", "Email": "@d.Email"}');
+        }
+        return myArray;
+    }
+</script>

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Contatos";
+}
+<div class="title-agenda">
+    <h2>Contatos</h2>
+    <a class="btn btn-success button-add" href="@Url.Action("Index", "GerenciadorContato")">Add</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone(s)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Nome
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @foreach(var tel in item.Telefones)
+                    {
+                        <p>@tel.Tel</p>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "GerenciadorContato")" class="btn btn-primary float-right" style="margin: 1%">Editar</a>
+                    <a href="@Url.Action("Index", "GerenciadorContato")" class="btn btn-danger float-right" style="margin: 1%">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

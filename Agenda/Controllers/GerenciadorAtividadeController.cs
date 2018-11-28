@@ -39,7 +39,7 @@ namespace Agenda.Controllers
         public ActionResult Cadastro(AtividadeDTO atividade)
         {
             Console.WriteLine("{0} {1} {2} {3}", atividade.Titulo, atividade.Descricao, atividade.DataHora, atividade.DataHora);
-            return View("~/GerenciadorAtividade/Index");
+            return RedirectToAction("Index", "GerenciadorAtividade");
         }
 
         public static Object RemoverPessoa(int index, List<PessoaDTO> pessoas)

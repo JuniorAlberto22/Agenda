@@ -14,7 +14,9 @@ namespace Agenda.Controllers
             IEnumerable<Pessoa> pessoas = new List<Pessoa>()
             {
                 new Pessoa()
-                { Nome="Alberto", Email="email@gmail.com",
+                {
+                    Id = 20,
+                    Nome ="Alberto", Email="email@gmail.com",
                     Telefones=new List<Telefone>(){
                         new Telefone() { Tel="(99) 9999-9999" },
                         new Telefone() { Tel="(99) 9999-9999" }
@@ -58,5 +60,7 @@ namespace Agenda.Controllers
             };
             return View(pessoas);
         }
+
+       
     }
 }
